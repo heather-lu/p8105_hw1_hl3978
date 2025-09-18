@@ -29,4 +29,22 @@ data("early_january_weather")
   - **Humidity range**: `r paste(range(early_january_weather$humid), collapse = " to ")`
   - **Windspeed range** (mph) : `r paste(range(early_january_weather$wind_speed), collapse = " to ")`
 
+## temp vs. time_hour scatterplot
+
+```{r}
+
+#create scatterplot
+temp_time_scatter <- ggplot(early_january_weather,
+                            aes(x = time_hour, y = temp, color = humid)) +
+  geom_point(alpha = 0.8) +
+  labs( x = "time (hourly)", y = "Temp (F)", color = "humidity",
+        title = "Temperature over Time")
+
+temp_time_scatter
+
+# Export scatterplot in the project directory
+ggsave("temp_time_scatter.png", plot = temp_time_scatter)
+
+```
+
 
