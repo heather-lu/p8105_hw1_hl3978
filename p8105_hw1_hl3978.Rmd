@@ -47,4 +47,7 @@ ggsave("temp_time_scatter.png", plot = temp_time_scatter)
 
 ```
 
+## Pattern description of temperature over time scatterplot
+
+The plot shows that the temperature has a clear daily cycle - lower temperatures late night/early morning and higher temperatures midday/afternoon. There doesn't appear to be any clear patterns with humidity. In some cases, humidity seems to be associated with lower temperatures on certain days.
 
