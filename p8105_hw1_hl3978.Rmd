@@ -59,7 +59,7 @@ Create a data frame comprised of:
 - a character vector of length 10
 - a factor vector of length 10, with 3 different factor “levels”
 
-```{r}
+```{r, warning=FALSE}
 set.seed(8105)  # reproducible
 
 # numeric: standard normal sample
@@ -77,6 +77,40 @@ x_fac = factor(sample(c("low","med","high"), size = 10, replace = TRUE))
 # create dataframe
 df <- tibble(x_num, x_log, x_chr, x_fac)
 df
+
+# Try to take the mean of each variable in your dataframe. What works and what doesn’t? 
+
+# Works: Numeric values
+mean_num <- mean(df |> pull(x_num))
+mean_log <- mean(df |> pull(x_log)) # TRUE=1, FALSE=0
+
+# Doesn't work: non-numeric inputs (characters and factors)
+mean(df |> pull(x_chr))                     
+mean(df |> pull(x_fac)) 
 ```
+
+**What works and what doesn't**
+
+- The numeric values work fine
+- Values in the logical vector also work because TRUE = 1 and FALSE = 0, the mean computes the proportion of TRUEs
+- Characters have no numeric meaning so we get an error
+- Factors are also a non-numeric input
+
+**Write a code chunk that applies the as.numeric function to the logical, character, and factor variables**
+
+```{r, results='hide', warning=FALSE}
+num_from_log <- as.numeric(df$x_log)   # Converts TRUE→1, FALSE→0
+num_from_chr <- as.numeric(df$x_chr)   # Converts to NAs with warnings
+num_from_fac <- as.numeric(df$x_fac)   # Converts to underlying level codes
+```
+**What happens, and why? Does this help explain what happens when you try to take the mean?**
+- Logical -> numeric returns 1s and 0s, which is why mean works on x_log
+- Character -> numeric tries to parse each strings as a number, non-numeric strings return NA. Hence, you cannot take the mean
+- Factor -> numeric returns the integer codes of the levels. You must convert factors to numeric values before taking the mean.
+
+
+
+
+
 
 
