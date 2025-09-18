@@ -51,3 +51,32 @@ ggsave("temp_time_scatter.png", plot = temp_time_scatter)
 
 The plot shows that the temperature has a clear daily cycle - lower temperatures late night/early morning and higher temperatures midday/afternoon. There doesn't appear to be any clear patterns with humidity. In some cases, humidity seems to be associated with lower temperatures on certain days.
 
+# Problem 2
+
+Create a data frame comprised of:
+- a random sample of size 10 from a standard Normal distribution
+- a logical vector indicating whether elements of the sample are greater than 0
+- a character vector of length 10
+- a factor vector of length 10, with 3 different factor “levels”
+
+```{r}
+set.seed(8105)  # reproducible
+
+# numeric: standard normal sample
+x_num  <- rnorm(10)
+
+# logical vector: x > 0 
+x_log  <- x_num > 0
+
+# character vector 
+x_chr = letters[1:10]
+
+# factor vector
+x_fac = factor(sample(c("low","med","high"), size = 10, replace = TRUE))
+
+# create dataframe
+df <- tibble(x_num, x_log, x_chr, x_fac)
+df
+```
+
+
