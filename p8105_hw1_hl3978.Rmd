@@ -104,6 +104,7 @@ num_from_chr <- as.numeric(df$x_chr)   # Converts to NAs with warnings
 num_from_fac <- as.numeric(df$x_fac)   # Converts to underlying level codes
 ```
 **What happens, and why? Does this help explain what happens when you try to take the mean?**
+
 - Logical -> numeric returns 1s and 0s, which is why mean works on x_log
 - Character -> numeric tries to parse each strings as a number, non-numeric strings return NA. Hence, you cannot take the mean
 - Factor -> numeric returns the integer codes of the levels. You must convert factors to numeric values before taking the mean.
